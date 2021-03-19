@@ -5,7 +5,11 @@
 </head>
 <body>
     <h1>{{ first }} {{ last }}</h1>
-
     <p>GitHub Account: {{ github }}</p>
+    <ul>Grades</ul>
+
+    {% for grade in grades %}
+    <li>{{ grade.project_title }} = {{ grade.grade }}</li>
+    {% end for %}
 </body>
 </html>

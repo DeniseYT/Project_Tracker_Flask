@@ -50,16 +50,16 @@ def make_new_student(first_name, last_name, github):
           VALUES (:first_name, :last_name, :github)
         """
 
-    db_cursor = db.session.execute(QUERY, {'first_name': first_name,
+    db.session.execute(QUERY, {'first_name': first_name,
                                'last_name': last_name,
                                'github': github})
     db.session.commit()
 
-    row = db_cursor.fetchone()
+    # row = db_cursor.fetchone()
 
     print(f"Successfully added student: {first_name} {last_name}")
 
-    return row
+    # return row
 
 
 def get_project_by_title(title):
@@ -153,6 +153,32 @@ def get_grades_by_title(title):
 
     return rows
 
+
+def get_all_students():
+    """Get a list of all students"""
+
+    QUERY = """
+        SELECT * FROM students
+        """
+    
+    db_cursor = db.session.execute(QUERY)
+    rows = db_cursor.fetchall()
+
+    return rows
+
+
+def get_all_projects():
+    """Get a list of all projects"""
+
+    QUERY = """
+        SELECT * FROM projects
+        """
+    
+    db_cursor = db.session.execute(QUERY)
+    rows = db_cursor.fetchall()
+
+    return rows
+        
 
 def handle_input():
     """Main loop.
